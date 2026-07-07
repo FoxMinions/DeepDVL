@@ -13,6 +13,12 @@ dist-ssr/
 build/
 *.local
 
+# vue-tsc composite 构建产物（vite.config 等被 tsc 生成的临时文件）
+vite.config.d.ts
+vite.config.js
+vite.config.d.cts
+vite.config.cjs
+
 # ─────────────────────────────────────────────────────────────
 # 缓存与日志
 # ─────────────────────────────────────────────────────────────
