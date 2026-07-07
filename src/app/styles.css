@@ -1,8 +1,25 @@
 :root {
-  color: #eaf9ff;
-  background: #030b18;
+  color: var(--text);
+  background: var(--bg);
   font-family: Inter, 'Microsoft YaHei', 'PingFang SC', 'Segoe UI', Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
+
+  /* 深空数据宇宙 · 色板 */
+  --bg: #030b18;
+  --bg-indigo: #0a1230;
+  --panel: rgb(8 20 46 / 82%);
+  --panel-strong: rgb(12 26 56 / 88%);
+  --border: rgb(69 217 255 / 28%);
+  --cyan: #45d9ff;
+  --ice: #7be2ff;
+  --indigo: #6f7bff;
+  --green: #56f0c0;
+  --yellow: #f4c96b;
+  --red: #ff6b7a;
+  --text: #eaf9ff;
+  --muted: #91b3ca;
 }
 
 * {
@@ -16,4 +33,29 @@ body,
   height: 100%;
   margin: 0;
   overflow: hidden;
+}
+
+body {
+  min-width: 320px;
+  background:
+    linear-gradient(145deg, rgb(6 20 49 / 92%) 0%, rgb(3 11 24 / 96%) 48%, #061323 100%),
+    radial-gradient(circle at 17% 14%, rgb(69 217 255 / 18%), transparent 26%),
+    radial-gradient(circle at 78% 20%, rgb(111 123 255 / 12%), transparent 24%);
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  background:
+    linear-gradient(rgb(99 170 255 / 5%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(99 170 255 / 5%) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 72%), rgb(0 0 0 / 26%));
+}
+
+button,
+input {
+  font: inherit;
 }
