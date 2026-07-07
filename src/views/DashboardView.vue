@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 
+import BasePanel from '../components/BasePanel.vue'
+import MetricCard from '../components/MetricCard.vue'
+import ScreenHeader from '../components/ScreenHeader.vue'
 import LineTrendChart from '../charts/LineTrendChart.vue'
 import BigScreenLayout from '../layouts/BigScreenLayout.vue'
 import { fetchDashboardData } from '../services/dashboardService'
 import type { DashboardData } from '../types/dashboard'
 
-// 临时验证：阶段七会替换为 Pinia store 驱动
 const data = ref<DashboardData | null>(null)
 
 onMounted(() => {
@@ -19,15 +21,22 @@ onMounted(() => {
 <template>
   <BigScreenLayout>
     <main class="dashboard-view">
+      <ScreenHeader />
       <section
         v-if="data"
-        class="dashboard-view__panel"
+        class="dashboard-view__body"
       >
-        <h2 class="dashboard-view__title">
-          访问趋势
-        </h2>
-        <div class="dashboard-view__chart">
-          <LineTrendChart :data="data.trend" />
+        <div class="dashboard-view__metrics">
+          <MetricCard
+            v-for="m in data.summary"
+            :key="m.id"
+            :metric="m"
+          />
+        </div>
+        <div class="dashboard-view__charts">
+          <BasePanel title="访问趋势">
+            <LineTrendChart :data="data.trend" />
+          </BasePanel>
         </div>
       </section>
       <section
@@ -42,43 +51,37 @@ onMounted(() => {
 
 <style scoped>
 .dashboard-view {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 24px;
+  padding: 0 28px 24px;
   color: var(--text);
 }
 
-.dashboard-view__panel {
+.dashboard-view__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+
+.dashboard-view__metrics {
   display: grid;
-  grid-template-rows: 32px 1fr;
-  gap: 12px;
-  width: 60%;
-  height: 360px;
-  place-self: center center;
-  padding: 14px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow:
-    inset 0 0 28px rgb(47 117 255 / 10%),
-    0 0 24px rgb(69 217 255 / 18%);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  flex-shrink: 0;
 }
 
-.dashboard-view__title {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text);
-  text-shadow: 0 0 14px rgb(69 217 255 / 26%);
-}
-
-.dashboard-view__chart {
+.dashboard-view__charts {
+  flex: 1;
   min-height: 0;
 }
 
 .dashboard-view__state {
   place-self: center center;
+  flex: 1;
   font-size: 18px;
   color: var(--muted);
 }
