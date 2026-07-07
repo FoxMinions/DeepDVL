@@ -13,4 +13,15 @@ export default defineConfig({
     host: true,
     port: 5173,
   },
+  build: {
+    chunkSizeWarningLimit: 1100,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          echarts: ['echarts'],
+          vue: ['vue'],
+        },
+      },
+    },
+  },
 })
