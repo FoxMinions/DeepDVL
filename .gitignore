@@ -69,3 +69,4 @@ coverage/
 *.zip
 *.tar.gz
 *.rar
+test-results/

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const httpClient = axios.create({
+export const http = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
   timeout: 8000,
 })
