@@ -31,12 +31,12 @@ defineProps<{
   height: 100%;
   padding: 14px;
   background:
-    linear-gradient(135deg, rgb(69 217 255 / 13%), transparent 38%) var(--panel);
+    linear-gradient(135deg, rgb(212 168 83 / 10%), transparent 38%) var(--panel);
   border: 1px solid var(--border);
   border-radius: 8px;
   box-shadow:
-    inset 0 0 28px rgb(47 117 255 / 10%),
-    0 0 24px rgb(69 217 255 / 18%);
+    inset 0 0 28px rgb(180 140 70 / 6%),
+    0 0 24px rgb(212 168 83 / 14%);
 }
 
 .base-panel::before,
@@ -51,16 +51,16 @@ defineProps<{
 .base-panel::before {
   top: -1px;
   left: -1px;
-  border-top: 2px solid var(--cyan);
-  border-left: 2px solid var(--cyan);
+  border-top: 2px solid var(--primary);
+  border-left: 2px solid var(--primary);
   border-radius: 8px 0 0;
 }
 
 .base-panel::after {
   right: -1px;
   bottom: -1px;
-  border-right: 2px solid var(--cyan);
-  border-bottom: 2px solid var(--cyan);
+  border-right: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
   border-radius: 0 0 8px;
 }
 
@@ -75,9 +75,9 @@ defineProps<{
   display: block;
   width: 8px;
   height: 8px;
-  background: var(--cyan);
+  background: var(--primary);
   transform: rotate(45deg);
-  box-shadow: 0 0 8px var(--cyan), 0 0 18px rgb(69 217 255 / 50%);
+  box-shadow: 0 0 8px var(--primary), 0 0 18px rgb(212 168 83 / 40%);
 }
 
 .base-panel__title {
@@ -85,7 +85,7 @@ defineProps<{
   font-size: 15px;
   font-weight: 700;
   color: var(--text);
-  text-shadow: 0 0 14px rgb(69 217 255 / 26%);
+  text-shadow: 0 0 14px rgb(212 168 83 / 22%);
 }
 
 .base-panel__body {

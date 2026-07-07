@@ -70,11 +70,11 @@ onBeforeUnmount(() => {
 }
 
 .screen-header__line--left {
-  background: linear-gradient(to right, transparent, rgb(69 217 255 / 40%));
+  background: linear-gradient(to right, transparent, rgb(212 168 83 / 40%));
 }
 
 .screen-header__line--right {
-  background: linear-gradient(to left, transparent, rgb(69 217 255 / 40%));
+  background: linear-gradient(to left, transparent, rgb(212 168 83 / 40%));
 }
 
 .screen-header__title {
@@ -82,14 +82,14 @@ onBeforeUnmount(() => {
   font-size: 24px;
   font-weight: 700;
   color: var(--text);
-  text-shadow: 0 0 28px rgb(69 217 255 / 36%), 0 0 60px rgb(111 123 255 / 20%);
+  text-shadow: 0 0 28px rgb(212 168 83 / 30%), 0 0 60px rgb(201 149 107 / 16%);
   letter-spacing: 2px;
   white-space: nowrap;
 }
 
 .screen-header__time {
   font-size: 14px;
-  color: var(--ice);
+  color: var(--primary-light);
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
 }

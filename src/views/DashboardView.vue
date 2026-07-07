@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted } from 'vue'
 
+import ActivityFeed from '../components/ActivityFeed.vue'
 import BasePanel from '../components/BasePanel.vue'
 import MetricCard from '../components/MetricCard.vue'
 import ScreenHeader from '../components/ScreenHeader.vue'
 import DataHubChart from '../charts/DataHubChart.vue'
 import LineTrendChart from '../charts/LineTrendChart.vue'
+import PieCategoryChart from '../charts/PieCategoryChart.vue'
 import BigScreenLayout from '../layouts/BigScreenLayout.vue'
 import { useDashboardStore } from '../stores/dashboardStore'
 
@@ -61,9 +63,7 @@ onBeforeUnmount(() => {
               <LineTrendChart :data="dashboard.data.trend" />
             </BasePanel>
             <BasePanel title="分类占比">
-              <div class="dashboard-view__placeholder">
-                敬请期待
-              </div>
+              <PieCategoryChart :data="dashboard.data.categories" />
             </BasePanel>
           </div>
           <div class="dashboard-view__col dashboard-view__col--center">
@@ -82,9 +82,7 @@ onBeforeUnmount(() => {
               </div>
             </BasePanel>
             <BasePanel title="实时动态">
-              <div class="dashboard-view__placeholder">
-                敬请期待
-              </div>
+              <ActivityFeed :data="dashboard.data.activities" />
             </BasePanel>
           </div>
         </div>
@@ -119,8 +117,8 @@ onBeforeUnmount(() => {
   margin-bottom: 4px;
   font-size: 12px;
   color: var(--yellow);
-  background: rgb(244 201 107 / 10%);
-  border: 1px solid rgb(244 201 107 / 24%);
+  background: rgb(224 184 76 / 12%);
+  border: 1px solid rgb(224 184 76 / 26%);
   border-radius: 4px;
   text-align: center;
 }
@@ -129,9 +127,9 @@ onBeforeUnmount(() => {
   padding: 4px 14px;
   margin-bottom: 4px;
   font-size: 12px;
-  color: var(--cyan);
-  background: rgb(69 217 255 / 8%);
-  border: 1px solid rgb(69 217 255 / 18%);
+  color: var(--primary);
+  background: rgb(212 168 83 / 8%);
+  border: 1px solid rgb(212 168 83 / 18%);
   border-radius: 4px;
   text-align: center;
 }
@@ -157,6 +155,7 @@ onBeforeUnmount(() => {
   grid-template-rows: 1fr 1fr;
   gap: 14px;
   min-height: 0;
+  overflow: hidden;
 }
 
 .dashboard-view__col--center {

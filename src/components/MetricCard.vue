@@ -46,8 +46,8 @@ function statusColor(status: SummaryMetric['status']): string {
   border: 1px solid var(--border);
   border-radius: 8px;
   box-shadow:
-    inset 0 0 20px rgb(47 117 255 / 8%),
-    0 0 16px rgb(69 217 255 / 12%);
+    inset 0 0 20px rgb(180 140 70 / 5%),
+    0 0 16px rgb(212 168 83 / 10%);
 }
 
 .metric-card::before {
@@ -76,7 +76,7 @@ function statusColor(status: SummaryMetric['status']): string {
   font-size: 28px;
   font-weight: 700;
   color: var(--text);
-  text-shadow: 0 0 14px rgb(69 217 255 / 20%);
+  text-shadow: 0 0 14px rgb(212 168 83 / 16%);
   line-height: 1;
 }
 

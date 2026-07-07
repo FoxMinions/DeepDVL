@@ -20,9 +20,9 @@ let resizeObserver: ResizeObserver | null = null
 const CENTER: [number, number] = [50, 50]
 
 const STATUS_COLOR: Record<string, string> = {
-  good: '#56f0c0',
-  warning: '#f4c96b',
-  danger: '#ff6b7a',
+  good: '#5cb88d',
+  warning: '#e0b84c',
+  danger: '#d4746a',
 }
 
 function ringCoords(radius: number, sides: number): [number, number][] {
@@ -59,10 +59,10 @@ function buildOption(): echarts.EChartsOption {
     grid: { left: 0, right: 0, top: 0, bottom: 0 },
     tooltip: {
       trigger: 'item',
-      backgroundColor: 'rgba(4, 17, 32, 0.92)',
-      borderColor: 'rgba(99, 208, 255, 0.36)',
+      backgroundColor: 'rgba(10, 10, 15, 0.94)',
+      borderColor: 'rgba(212, 168, 83, 0.36)',
       borderWidth: 1,
-      textStyle: { color: '#eaf9ff', fontSize: 12 },
+      textStyle: { color: '#f0ede6', fontSize: 12 },
       formatter: (p: unknown) => {
         const item = p as { name: string }
         const found = allNodes.find(
@@ -81,7 +81,7 @@ function buildOption(): echarts.EChartsOption {
         silent: true,
         z: 1,
         lineStyle: {
-          color: 'rgba(123, 226, 255, 0.12)',
+          color: 'rgba(212, 168, 83, 0.08)',
           width: 1,
           type: 'dashed',
         },
@@ -95,7 +95,7 @@ function buildOption(): echarts.EChartsOption {
         silent: true,
         z: 1,
         lineStyle: {
-          color: 'rgba(111, 123, 255, 0.10)',
+          color: 'rgba(201, 149, 107, 0.07)',
           width: 1,
           type: 'dashed',
         },
@@ -107,7 +107,7 @@ function buildOption(): echarts.EChartsOption {
         data: flowLines,
         z: 2,
         lineStyle: {
-          color: 'rgba(69, 217, 255, 0.35)',
+          color: 'rgba(212, 168, 83, 0.30)',
           width: 1.5,
           curveness: 0.15,
         },
@@ -117,7 +117,7 @@ function buildOption(): echarts.EChartsOption {
           trailLength: 0.3,
           symbol: 'circle',
           symbolSize: 4,
-          color: 'rgba(69, 217, 255, 0.7)',
+          color: 'rgba(212, 168, 83, 0.6)',
         },
       },
       {
@@ -129,9 +129,9 @@ function buildOption(): echarts.EChartsOption {
           id: n.id,
           symbolSize: Math.max(18, n.value / 2.8),
           itemStyle: {
-            color: STATUS_COLOR[n.status] || '#56f0c0',
+            color: STATUS_COLOR[n.status] || '#5cb88d',
             shadowBlur: 18,
-            shadowColor: STATUS_COLOR[n.status] || '#56f0c0',
+            shadowColor: STATUS_COLOR[n.status] || '#5cb88d',
           },
         })),
         z: 4,
@@ -139,13 +139,13 @@ function buildOption(): echarts.EChartsOption {
           brushType: 'stroke',
           scale: 3.2,
           period: 4,
-          color: 'rgba(69, 217, 255, 0.18)',
+          color: 'rgba(212, 168, 83, 0.14)',
         },
         label: {
           show: true,
           position: 'right',
           formatter: '{b}',
-          color: '#91b3ca',
+          color: '#a09888',
           fontSize: 11,
           distance: 6,
         },
@@ -159,9 +159,9 @@ function buildOption(): echarts.EChartsOption {
             value: CENTER,
             symbolSize: 40,
             itemStyle: {
-              color: '#45d9ff',
+              color: '#d4a853',
               shadowBlur: 32,
-              shadowColor: '#45d9ff',
+              shadowColor: '#d4a853',
             },
           },
         ],
@@ -171,10 +171,10 @@ function buildOption(): echarts.EChartsOption {
           position: 'bottom',
           distance: 14,
           formatter: '{b}',
-          color: '#eaf9ff',
+          color: '#f0ede6',
           fontSize: 13,
           fontWeight: 'bold',
-          textShadowColor: 'rgba(69, 217, 255, 0.4)',
+          textShadowColor: 'rgba(212, 168, 83, 0.4)',
           textShadowBlur: 8,
         },
         symbol: 'circle',

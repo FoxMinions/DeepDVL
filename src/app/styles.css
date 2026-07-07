@@ -6,20 +6,20 @@
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
 
-  /* 深空数据宇宙 · 色板 */
-  --bg: #030b18;
-  --bg-indigo: #0a1230;
-  --panel: rgb(8 20 46 / 82%);
-  --panel-strong: rgb(12 26 56 / 88%);
-  --border: rgb(69 217 255 / 28%);
-  --cyan: #45d9ff;
-  --ice: #7be2ff;
-  --indigo: #6f7bff;
-  --green: #56f0c0;
-  --yellow: #f4c96b;
-  --red: #ff6b7a;
-  --text: #eaf9ff;
-  --muted: #91b3ca;
+  /* 暗夜紫金 · 色板 */
+  --bg: #0a0a0f;
+  --bg-light: #14141c;
+  --panel: rgb(20 18 14 / 85%);
+  --panel-strong: rgb(28 24 18 / 90%);
+  --border: rgb(212 168 83 / 30%);
+  --primary: #d4a853;
+  --primary-light: #e8c97a;
+  --accent: #c9956b;
+  --green: #5cb88d;
+  --yellow: #e0b84c;
+  --red: #d4746a;
+  --text: #f0ede6;
+  --muted: #a09888;
 }
 
 * {
@@ -38,9 +38,9 @@ body,
 body {
   min-width: 320px;
   background:
-    linear-gradient(145deg, rgb(6 20 49 / 92%) 0%, rgb(3 11 24 / 96%) 48%, #061323 100%),
-    radial-gradient(circle at 17% 14%, rgb(69 217 255 / 18%), transparent 26%),
-    radial-gradient(circle at 78% 20%, rgb(111 123 255 / 12%), transparent 24%);
+    linear-gradient(145deg, rgb(18 16 10 / 94%) 0%, rgb(10 10 15 / 97%) 48%, #0f0d08 100%),
+    radial-gradient(circle at 18% 14%, rgb(212 168 83 / 12%), transparent 28%),
+    radial-gradient(circle at 80% 22%, rgb(201 149 107 / 8%), transparent 26%);
 }
 
 body::before {
@@ -49,8 +49,8 @@ body::before {
   pointer-events: none;
   content: '';
   background:
-    linear-gradient(rgb(99 170 255 / 5%) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(99 170 255 / 5%) 1px, transparent 1px);
+    linear-gradient(rgb(212 168 83 / 4%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(212 168 83 / 4%) 1px, transparent 1px);
   background-size: 36px 36px;
   mask-image: linear-gradient(to bottom, rgb(0 0 0 / 72%), rgb(0 0 0 / 26%));
 }

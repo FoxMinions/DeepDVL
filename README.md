@@ -38,14 +38,14 @@
 | E2E 测试 | Playwright | ^1.45 |
 | 代码规范 | ESLint 10 (flat config) + Prettier 3 + Stylelint 17 | — |
 
-## 视觉主题：深空数据宇宙
+## 视觉主题：暗夜紫金
 
-深蓝底色 + 青蓝/冰蓝/靛紫强调色 + 网格底纹 + 数据星云 + HUD 发光面板，营造「深度数界实验室」的沉浸科技感。
+深黑底色 + 暗金/玫瑰金强调色 + 网格底纹 + 金色星云 + HUD 发光面板，营造「深度数界实验室」的奢华科技感与数据大屏的沉浸氛围。
 
-![#030b18](https://placehold.co/15x15/030b18/030b18.png) `--bg` `#030b18` &nbsp;
-![#45d9ff](https://placehold.co/15x15/45d9ff/45d9ff.png) `--cyan` `#45d9ff` &nbsp;
-![#7be2ff](https://placehold.co/15x15/7be2ff/7be2ff.png) `--ice` `#7be2ff` &nbsp;
-![#6f7bff](https://placehold.co/15x15/6f7bff/6f7bff.png) `--indigo` `#6f7bff`
+![#0a0a0f](https://placehold.co/15x15/0a0a0f/0a0a0f.png) `--bg` `#0a0a0f` &nbsp;
+![#d4a853](https://placehold.co/15x15/d4a853/d4a853.png) `--primary` `#d4a853` &nbsp;
+![#e8c97a](https://placehold.co/15x15/e8c97a/e8c97a.png) `--primary-light` `#e8c97a` &nbsp;
+![#c9956b](https://placehold.co/15x15/c9956b/c9956b.png) `--accent` `#c9956b`
 
 ## 阶段进度
 
@@ -72,8 +72,10 @@ DeepDVL/
 │   ├── app/                       # 入口 (main.ts + styles.css)
 │   ├── charts/                    # ECharts 图表组件
 │   │   ├── DataHubChart.vue       # 中心数据宇宙主视觉
-│   │   └── LineTrendChart.vue     # 折线趋势图
+│   │   ├── LineTrendChart.vue     # 折线趋势图
+│   │   └── PieCategoryChart.vue   # 分类玫瑰饼图
 │   ├── components/                # 通用 UI 组件
+│   │   ├── ActivityFeed.vue       # 实时动态列表
 │   │   ├── BasePanel.vue          # HUD 面板外壳
 │   │   ├── MetricCard.vue         # 指标卡片
 │   │   └── ScreenHeader.vue       # 顶部标题栏 + 实时时间
