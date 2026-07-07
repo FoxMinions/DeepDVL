@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted } from 'vue'
 
 import BasePanel from '../components/BasePanel.vue'
 import MetricCard from '../components/MetricCard.vue'
@@ -7,15 +7,23 @@ import ScreenHeader from '../components/ScreenHeader.vue'
 import DataHubChart from '../charts/DataHubChart.vue'
 import LineTrendChart from '../charts/LineTrendChart.vue'
 import BigScreenLayout from '../layouts/BigScreenLayout.vue'
-import { fetchDashboardData } from '../services/dashboardService'
-import type { DashboardData } from '../types/dashboard'
+import { useDashboardStore } from '../stores/dashboardStore'
 
-const data = ref<DashboardData | null>(null)
+const dashboard = useDashboardStore()
+let timer: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
-  fetchDashboardData().then((d) => {
-    data.value = d
-  })
+  void dashboard.loadDashboard()
+  timer = setInterval(() => {
+    void dashboard.loadDashboard()
+  }, 30000)
+})
+
+onBeforeUnmount(() => {
+  if (timer) {
+    clearInterval(timer)
+    timer = null
+  }
 })
 </script>
 
@@ -23,13 +31,26 @@ onMounted(() => {
   <BigScreenLayout>
     <main class="dashboard-view">
       <ScreenHeader />
-      <section
-        v-if="data"
-        class="dashboard-view__body"
-      >
+      <template v-if="dashboard.data">
+        <div
+          v-if="dashboard.error"
+          class="dashboard-view__banner"
+        >
+          数据刷新失败，将在 30 秒后重试
+        </div>
+        <div
+          v-if="dashboard.selectedNodeId"
+          class="dashboard-view__nodeinfo"
+        >
+          已选中：{{
+            dashboard.data.hubNodes.find(
+              (n) => n.id === dashboard.selectedNodeId,
+            )?.name || ''
+          }}
+        </div>
         <div class="dashboard-view__metrics">
           <MetricCard
-            v-for="m in data.summary"
+            v-for="m in dashboard.data.summary"
             :key="m.id"
             :metric="m"
           />
@@ -37,7 +58,7 @@ onMounted(() => {
         <div class="dashboard-view__grid">
           <div class="dashboard-view__col">
             <BasePanel title="访问趋势">
-              <LineTrendChart :data="data.trend" />
+              <LineTrendChart :data="dashboard.data.trend" />
             </BasePanel>
             <BasePanel title="分类占比">
               <div class="dashboard-view__placeholder">
@@ -48,8 +69,9 @@ onMounted(() => {
           <div class="dashboard-view__col dashboard-view__col--center">
             <BasePanel title="DeepDVL 数据中枢">
               <DataHubChart
-                v-if="data.hubNodes.length"
-                :data="data.hubNodes"
+                v-if="dashboard.data.hubNodes.length"
+                :data="dashboard.data.hubNodes"
+                @select="dashboard.selectedNodeId = $event"
               />
             </BasePanel>
           </div>
@@ -66,12 +88,17 @@ onMounted(() => {
             </BasePanel>
           </div>
         </div>
-      </section>
+      </template>
       <section
         v-else
         class="dashboard-view__state"
       >
-        数据加载中...
+        <template v-if="dashboard.error">
+          {{ dashboard.error }}，将在 30 秒后重试
+        </template>
+        <template v-else>
+          数据加载中...
+        </template>
       </section>
     </main>
   </BigScreenLayout>
@@ -87,12 +114,26 @@ onMounted(() => {
   color: var(--text);
 }
 
-.dashboard-view__body {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  flex: 1;
-  min-height: 0;
+.dashboard-view__banner {
+  padding: 6px 14px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: var(--yellow);
+  background: rgb(244 201 107 / 10%);
+  border: 1px solid rgb(244 201 107 / 24%);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.dashboard-view__nodeinfo {
+  padding: 4px 14px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: var(--cyan);
+  background: rgb(69 217 255 / 8%);
+  border: 1px solid rgb(69 217 255 / 18%);
+  border-radius: 4px;
+  text-align: center;
 }
 
 .dashboard-view__metrics {
@@ -108,6 +149,7 @@ onMounted(() => {
   gap: 14px;
   flex: 1;
   min-height: 0;
+  margin-top: 14px;
 }
 
 .dashboard-view__col {
@@ -131,6 +173,7 @@ onMounted(() => {
 }
 
 .dashboard-view__state {
+  display: grid;
   place-self: center center;
   flex: 1;
   font-size: 18px;

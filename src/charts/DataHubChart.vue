@@ -9,6 +9,10 @@ const props = defineProps<{
   data: HubNode[]
 }>()
 
+const emit = defineEmits<{
+  (e: 'select', id: string): void
+}>()
+
 const chartRef = ref<HTMLDivElement | null>(null)
 let chart: echarts.ECharts | null = null
 let resizeObserver: ResizeObserver | null = null
@@ -122,6 +126,7 @@ function buildOption(): echarts.EChartsOption {
         data: props.data.map((n) => ({
           name: n.name,
           value: n.coord,
+          id: n.id,
           symbolSize: Math.max(18, n.value / 2.8),
           itemStyle: {
             color: STATUS_COLOR[n.status] || '#56f0c0',
@@ -188,6 +193,13 @@ onMounted(() => {
   chart = echarts.init(chartRef.value)
   renderChart()
   resizeObserver = observeResize(chartRef.value, () => chart?.resize())
+
+  chart.on('click', (params: unknown) => {
+    const data = (params as { data?: { id?: string } }).data
+    if (data?.id) {
+      emit('select', data.id)
+    }
+  })
 })
 
 watch(
